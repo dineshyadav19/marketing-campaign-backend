@@ -5,6 +5,9 @@ const Razorpay = require('razorpay')
 const cors = require('cors')
 const bodyParser = require('body-parser')
 
+const hostname = '0.0.0.0'
+const port = 3004;
+
 app.use(cors())
 app.use(bodyParser.json())
 
@@ -67,7 +70,6 @@ app.post('/razorpay', async (req, res) => {
 	}
 })
 
-app.listen(3004, () => {
+app.listen(port, hostname, () => {
 	console.log('Listening on 3002')
 })
-// https://e777-139-5-254-26.in.ngrok.io
