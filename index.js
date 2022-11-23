@@ -6,17 +6,17 @@ const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const hostname = '0.0.0.0'
-const port = 3004;
+const port = 3000;
 
 // app.use(cors({
 //     origin: '*'
 // }));
 app.use(function (req, res, next) {
-res.setHeader('Access-Control-Allow-Origin', '*');
-res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
-res.setHeader('Access-Control-Allow-Credentials', true);
-next();
+	res.setHeader('Access-Control-Allow-Origin', '*');
+	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+	res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+	res.setHeader('Access-Control-Allow-Credentials', true);
+	next();
 });
 app.use(bodyParser.json())
 
@@ -80,5 +80,5 @@ app.post('/razorpay', async (req, res) => {
 })
 
 app.listen(port, hostname, () => {
-	console.log('Listening on 3002')
+	console.log('Listening on 3000')
 })
