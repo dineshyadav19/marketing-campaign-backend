@@ -8,9 +8,16 @@ const bodyParser = require('body-parser')
 const hostname = '0.0.0.0'
 const port = 3004;
 
-app.use(cors({
-    origin: '*'
-}));
+// app.use(cors({
+//     origin: '*'
+// }));
+app.use(function (req, res, next) {
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');
+res.setHeader('Access-Control-Allow-Credentials', true);
+next();
+});
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
