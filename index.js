@@ -8,7 +8,9 @@ const bodyParser = require('body-parser')
 const hostname = '0.0.0.0'
 const port = 3004;
 
-app.use(cors())
+app.use(cors({
+    origin: '*'
+}));
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
