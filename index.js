@@ -5,7 +5,7 @@ const Razorpay = require('razorpay')
 const bodyParser = require('body-parser')
 
 const hostname = '0.0.0.0'
-const port = 1337;
+const port = 3000;
 const RAZORPAY_API='rzp_live_1Tcwr7uYJVaXiB'
 const RAZORPAY_SECRET='XZcWb7yuOOezpz2OWwmBAUbs'
 
@@ -19,8 +19,8 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
-	key_id: RAZORPAY_API,
-	key_secret: RAZORPAY_SECRET
+	key_id: 'rzp_live_1Tcwr7uYJVaXiB',
+	key_secret: 'XZcWb7yuOOezpz2OWwmBAUbs'
 })
 
 app.get('/logo.svg', (req, res) => {
@@ -40,15 +40,13 @@ app.post('/verification', (req, res) => {
 	shasum.update(JSON.stringify(req.body))
 	const digest = shasum.digest('hex')
 
-	// console.log(digest, req.headers['x-razorpay-signature'])
-
-	if (digest === req.headers['x-razorpay-signature']) {
-		console.log('request is legit')
-		// process it
-		require('fs').writeFileSync('payment1.json', JSON.stringify(req.body, null, 4))
-	} else {
-		// pass it
-	}
+	// if (digest === req.headers['x-razorpay-signature']) {
+	// 	console.log('request is legit')
+	// 	// process it
+	// 	require('fs').writeFileSync('payment1.json', JSON.stringify(req.body, null, 4))
+	// } else {
+	// 	// pass it
+	// }
 	res.json({ status: 'ok' })
 })
 
@@ -66,7 +64,6 @@ app.post('/razorpay', async (req, res) => {
 
 	try {
 		const response = await razorpay.orders.create(options)
-		console.log(response)
 		res.json({
 			id: response.id,
 			currency: response.currency,
