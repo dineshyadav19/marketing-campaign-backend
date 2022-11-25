@@ -6,8 +6,8 @@ const bodyParser = require('body-parser')
 
 const hostname = '0.0.0.0'
 const port = 1337;
-const RAZORPAY_API=process.env.RAZORPAY_API
-const RAZORPAY_SECRET=process.env.RAZORPAY_SECRET
+const RAZORPAY_API='rzp_live_1Tcwr7uYJVaXiB'
+const RAZORPAY_SECRET='XZcWb7yuOOezpz2OWwmBAUbs'
 
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
