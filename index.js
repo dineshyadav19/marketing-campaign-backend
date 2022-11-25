@@ -2,15 +2,13 @@ const app = require('express')()
 const path = require('path')
 const shortid = require('shortid')
 const Razorpay = require('razorpay')
-const cors = require('cors')
 const bodyParser = require('body-parser')
 
 const hostname = '0.0.0.0'
-const port = 3000;
+const port = 1337;
+const RAZORPAY_API=process.env.RAZORPAY_API
+const RAZORPAY_SECRET=process.env.RAZORPAY_SECRET
 
-// app.use(cors({
-//     origin: '*'
-// }));
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
 	res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
@@ -21,8 +19,8 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
-	key_id: 'rzp_test_N48bOgOWcG6zL1',
-	key_secret: 'rde41uFdS6PCuilbswIc7Zpa'
+	key_id: RAZORPAY_API,
+	key_secret: RAZORPAY_SECRET
 })
 
 app.get('/logo.svg', (req, res) => {
@@ -42,7 +40,7 @@ app.post('/verification', (req, res) => {
 	shasum.update(JSON.stringify(req.body))
 	const digest = shasum.digest('hex')
 
-	console.log(digest, req.headers['x-razorpay-signature'])
+	// console.log(digest, req.headers['x-razorpay-signature'])
 
 	if (digest === req.headers['x-razorpay-signature']) {
 		console.log('request is legit')
@@ -56,7 +54,7 @@ app.post('/verification', (req, res) => {
 
 app.post('/razorpay', async (req, res) => {
 	const payment_capture = 1
-	const amount = 49
+	const amount = 1
 	const currency = 'INR'
 
 	const options = {
