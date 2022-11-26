@@ -6,8 +6,6 @@ const bodyParser = require('body-parser')
 
 const hostname = '0.0.0.0'
 const port = 3000;
-const RAZORPAY_API='rzp_live_1Tcwr7uYJVaXiB'
-const RAZORPAY_SECRET='XZcWb7yuOOezpz2OWwmBAUbs'
 
 app.use(function (req, res, next) {
 	res.setHeader('Access-Control-Allow-Origin', '*');
@@ -19,8 +17,8 @@ app.use(function (req, res, next) {
 app.use(bodyParser.json())
 
 const razorpay = new Razorpay({
-	key_id: 'rzp_live_1Tcwr7uYJVaXiB',
-	key_secret: 'XZcWb7yuOOezpz2OWwmBAUbs'
+	key_id: 'jansdjjandjsas',
+	key_secret: 'kasdknsakd'
 })
 
 app.get('/logo.svg', (req, res) => {
